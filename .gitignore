@@ -1,0 +1,13 @@
+node_modules
+build
+coverage
+.vscode
+.DS_STORE
+.env
+tmp
+
+# managed
+**.data.json
+**.node-persist**
+**_IGNORE_**
+# end managed

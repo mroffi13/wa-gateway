@@ -1,0 +1,85 @@
+@hostname = http://127.0.0.1
+@port = 3333
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@token = Mw.xWYKfEINJ-hLrAQ8ibl8c6aNJemTSTZjsuD9ieB2kNPCZvxnAkbYz9p6F6aP
+### login
+
+POST {{host}}/login HTTP/1.1
+content-type: {{contentType}}
+
+{
+    "email": "aeropie13@gmail.com",
+    "password": "123456"
+}
+###
+
+POST {{host}}/register HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "name": "Mohammad Roffi",
+    "email": "aeropie13@gmail.com",
+    "password": "123456",
+    "password_confirmation": "123456"
+}
+###
+POST {{host}}/logout HTTP/1.1
+Authorization: Bearer {{token}}
+###
+POST {{host}}/users HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+    "page": 1,
+    "per_page": 10,
+    "date_filters": null,
+    "keyword": "Moh",
+    "sort": "asc",
+    "sort_by": "created_at"
+}
+# {
+#     "page": 2,
+#     "per_page": 1,
+#     "date_filters": null,
+#     "keyword": "Moh",
+#     "filters": "{\"email\": \"aeropie13@gmail.com\"}",
+#     "date_filters": "{\"created_at\": {\"start\": \"2022-06-21 17:16:06\", \"end\": \"2022-06-21 17:16:06\"}}",
+#     "sort": "asc",
+#     "sort_by": "name"
+# }
+
+###
+GET {{host}}/users/1 HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+POST {{host}}/assets/upload HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="text"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="files[]"; filename="logo.png"
+Content-Type: image/png
+
+< ./logo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+GET {{host}}/wa-gateway HTTP/1.1
+Authorization: Bearer {{token}}
+
+###
+POST {{host}}/wa/send-message HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+    "number": "6289683227607",
+    "message": "Test kirim pesan dari api !!!"
+}
