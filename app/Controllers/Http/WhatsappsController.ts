@@ -1,7 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { create, ev, Client } from '@open-wa/wa-automate';
 import { writeFileSync  } from 'node:fs';
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import { schema } from '@ioc:Adonis/Core/Validator'
 let globalClient:Client;
 
 export default class WhatsappsController {
